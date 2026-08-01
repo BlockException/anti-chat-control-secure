@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">🔐</div>
+        <div>
+          <h1>Secure Chat</h1>
+          <p>Client-seitige E2EE</p>
+        </div>
+      </div>
+      <div class="panel" id="login-panel">
+        <label for="username">Name</label>
+        <input id="username" type="text" placeholder="Dein Name" autocomplete="username" />
+        <label for="password">Passwort</label>
+        <input id="password" type="password" placeholder="Sicheres Passwort" autocomplete="current-password" />
+        <button id="login-btn">Start</button>
+      </div>
+      <div class="panel hidden" id="participants-panel">
+        <h2>Teilnehmer</h2>
+        <div id="participants-list" class="participants-list"></div>
+      </div>
+    </aside>
+
+    <main class="chat-area hidden" id="chat-area">
+      <div id="update-banner" class="update-banner hidden">Neue Version verfügbar. Lade die Seite neu.</div>
+      <header class="chat-header">
+        <div>
+          <h2 id="chat-title">Wähle einen Kontakt</h2>
+          <p id="chat-subtitle">Nachrichten werden lokal verschlüsselt.</p>
+        </div>
+      </header>
+      <section class="messages" id="messages"></section>
+      <form id="message-form" class="message-form">
+        <textarea id="message-input" placeholder="Nachricht schreiben..." rows="2"></textarea>
+        <button type="submit">Senden</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="bundle.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').catch((error) => {
+          console.warn('Service Worker registration failed:', error);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
