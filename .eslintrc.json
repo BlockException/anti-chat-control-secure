@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true,
+    "jest": true
+  },
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "scripts/**/*.js"]}],
+    "func-names": "off",
+    "linebreak-style": "off",
+    "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
+}
